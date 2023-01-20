@@ -7,6 +7,7 @@ import { createRoot } from "react-dom/client";
 function App() {
   var [id, setId] = useState(1);
   const [contacts, setContacts] = useState(data);
+  var [test, setTest] = useState(0);
 
   //graph data
   const names = contacts.map((contact) => contact.fname + " " + contact.lname);
@@ -74,17 +75,23 @@ function App() {
                     return;
                   }
                   //update table head
-                  const tHead = document.getElementById("table-head");
-                  const tableHead = createRoot(tHead);
 
-                  tableHead.render(
-                    <tr>
-                      <th></th>
-                      <th>First name</th>
-                      <th>Last name</th>
-                      <th>Participation</th>
-                    </tr>
-                  );
+                  if (test === 0) {
+                    const tHead = document.getElementById("table-head");
+                    const tableHead = createRoot(tHead);
+
+                    tableHead.render(
+                      <tr>
+                        <th></th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Participation</th>
+                      </tr>
+                    );
+
+                    setTest(1);
+                  }
+
                   //update contacts
                   const newContact = {
                     id: id,
