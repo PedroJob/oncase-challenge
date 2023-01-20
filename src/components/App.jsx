@@ -7,6 +7,8 @@ import { createRoot } from "react-dom/client";
 function App() {
   var [id, setId] = useState(1);
   const [contacts, setContacts] = useState(data);
+
+  //graph data
   const names = contacts.map((contact) => contact.fname + " " + contact.lname);
   var percs = contacts.map((contact) => contact.perc);
   const sum = percs.reduce(
@@ -14,6 +16,7 @@ function App() {
     0
   );
 
+  //generate random colors list
   var [colors, setColors] = useState("");
 
   function generateRandomColor() {
@@ -25,9 +28,7 @@ function App() {
     return `#${randColor.toUpperCase()}`;
   }
 
-  console.log(percs);
-  console.log(sum);
-
+  //validate names
   const validate = (string) => {
     return string.length;
   };
@@ -38,23 +39,12 @@ function App() {
         <div className="Header">
           <div className="header-form">
             <form>
-              <input
-                type="text"
-                placeholder="First name"
-                name="fname"
-                id="fname"
-              />
-              <input
-                type="text"
-                placeholder="Last name"
-                name="lname"
-                id="lname"
-              />
+              <input type="text" placeholder="First name" id="fname" />
+              <input type="text" placeholder="Last name" id="lname" />
               <input
                 type="number"
                 className="perc"
                 placeholder="Participation"
-                name="perc"
                 id="perc"
                 min="0"
                 max="100"
@@ -69,6 +59,7 @@ function App() {
                   let lname = document.getElementById("lname").value;
                   let perc = document.getElementById("perc").value;
 
+                  //validate forms
                   if (!validate(fname) || !validate(lname)) {
                     window.alert("Type a valid name");
                     return;
@@ -82,7 +73,7 @@ function App() {
                     );
                     return;
                   }
-
+                  //update table head
                   const tHead = document.getElementById("table-head");
                   const tableHead = createRoot(tHead);
 
@@ -94,7 +85,7 @@ function App() {
                       <th>Participation</th>
                     </tr>
                   );
-
+                  //update contacts
                   const newContact = {
                     id: id,
                     fname: fname,
@@ -104,6 +95,8 @@ function App() {
                   setId(id + 1);
                   const newContacts = [...contacts, newContact];
                   setContacts(newContacts);
+
+                  //update colors
                   const newColor = generateRandomColor();
                   setColors([...colors, newColor]);
                 }}

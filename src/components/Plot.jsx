@@ -14,9 +14,9 @@ function Plot(props) {
         backgroundColor: [...props.color, "#FFFFFF"],
         borderColor: [...props.color, "#FFFFFF"],
         borderWidth: 1,
-        responsive: true
-      }
-    ]
+        responsive: true,
+      },
+    ],
   };
   return <Doughnut data={data} />;
 }
