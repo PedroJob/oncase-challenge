@@ -52,7 +52,6 @@ function App() {
               />
               <input
                 type="number"
-                inputmode="numeric"
                 className="perc"
                 placeholder="Participation"
                 name="perc"
@@ -100,7 +99,7 @@ function App() {
                     id: id,
                     fname: fname,
                     lname: lname,
-                    perc: perc
+                    perc: perc,
                   };
                   setId(id + 1);
                   const newContacts = [...contacts, newContact];
